@@ -13,10 +13,9 @@ const navItems = [
   { title: "Upload Invoice", url: "/upload", icon: Upload },
   { title: "Invoices", url: "/invoices", icon: FileText },
   { title: "Expenses", url: "/expenses", icon: DollarSign },
-  { title: "Vendors", url: "/vendors", icon: Building2 },
+  
   { title: "Inventory", url: "/inventory", icon: Package },
   { title: "Analytics", url: "/analytics", icon: BarChart3 },
-  { title: "Reports", url: "/reports", icon: ClipboardList },
   { title: "Settings", url: "/settings", icon: Settings },
 ];
 

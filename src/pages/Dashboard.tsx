@@ -123,7 +123,7 @@ const Dashboard = () => {
             <thead>
               <tr className="text-left text-muted-foreground text-xs uppercase tracking-wider">
                 <th className="px-5 py-3">Invoice</th>
-                <th className="px-5 py-3">Vendor</th>
+                
                 <th className="px-5 py-3">Date</th>
                 <th className="px-5 py-3">Amount</th>
                 <th className="px-5 py-3">Status</th>
