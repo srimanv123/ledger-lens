@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Eye, EyeOff, Mail, Lock, User, Building2 } from "lucide-react";
+import { Eye, EyeOff, Mail, Lock, Building2 } from "lucide-react";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -24,14 +24,8 @@ const Signup = () => {
         </div>
 
         <form onSubmit={handleSignup} className="space-y-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Full Name</label>
-            <div className="relative">
-              <User className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type="text" placeholder="John Doe" className="input-glass pl-10" />
-            </div>
-          </div>
 
+          {/* Business Name */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Business Name</label>
             <div className="relative">
@@ -40,6 +34,7 @@ const Signup = () => {
             </div>
           </div>
 
+          {/* Email */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Email</label>
             <div className="relative">
@@ -48,6 +43,7 @@ const Signup = () => {
             </div>
           </div>
 
+          {/* Password */}
           <div className="space-y-2">
             <label className="text-sm font-medium text-muted-foreground">Password</label>
             <div className="relative">
@@ -64,14 +60,6 @@ const Signup = () => {
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Confirm Password</label>
-            <div className="relative">
-              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type="password" placeholder="••••••••" className="input-glass pl-10" />
             </div>
           </div>
 

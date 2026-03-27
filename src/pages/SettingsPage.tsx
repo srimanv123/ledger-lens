@@ -1,86 +1,129 @@
-import { Building2, User, Lock } from "lucide-react";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Mail, Lock, Building2, Eye, EyeOff } from "lucide-react";
 
-const SettingsPage = () => (
-  <div className="page-container max-w-3xl">
-    <div className="animate-fade-up">
-      <h1 className="text-2xl font-bold tracking-tight">Settings</h1>
-      <p className="text-muted-foreground mt-1">Manage your account and business preferences</p>
-    </div>
+const Signup = () => {
+  const navigate = useNavigate();
 
-    {/* Business Settings */}
-    <div className="glass-card p-6 space-y-5 animate-fade-up" style={{ opacity: 0, animationDelay: "0.1s" }}>
-      <div className="flex items-center gap-3 mb-2">
-        <Building2 className="w-5 h-5 text-primary" />
-        <h2 className="font-semibold">Business Settings</h2>
-      </div>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-muted-foreground">Business Name</label>
-          <input defaultValue="Acme Corporation" className="input-glass" />
+  const [showPassword, setShowPassword] = useState(false);
+  const [businessName, setBusinessName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    navigate("/dashboard");
+  };
+
+  return (
+    <div
+      className="min-h-screen flex items-center justify-center relative overflow-hidden"
+      style={{ background: "var(--gradient-bg)" }}
+    >
+      {/* Glow blobs */}
+      <div className="glow-blob w-96 h-96 bg-primary -top-20 -left-20 animate-pulse-glow" />
+      <div
+        className="glow-blob w-80 h-80 bg-teal bottom-10 right-10 animate-pulse-glow"
+        style={{ animationDelay: "3s" }}
+      />
+      <div
+        className="glow-blob w-64 h-64 bg-pink-500 top-1/2 left-1/3 animate-pulse-glow"
+        style={{ animationDelay: "1.5s" }}
+      />
+
+      <div className="glass-card p-8 sm:p-10 w-full max-w-md mx-4 animate-fade-up relative z-10">
+        {/* Heading */}
+        <div className="text-center mb-8">
+          <h1 className="text-3xl font-bold tracking-tight mb-2">
+            Create Account 🚀
+          </h1>
+          <p className="text-muted-foreground">
+            Start managing your finances smarter
+          </p>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+
+        {/* Form */}
+        <form onSubmit={handleSignup} className="space-y-6">
+
+          {/* Business Name */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Currency</label>
-            <select className="input-glass">
-              <option>USD ($)</option><option>EUR (€)</option><option>GBP (£)</option>
-            </select>
+            <label className="text-sm font-medium text-muted-foreground">
+              Business Name
+            </label>
+            <div className="relative">
+              <input
+                value={businessName}
+                onChange={(e) => setBusinessName(e.target.value)}
+                placeholder="Acme Corp"
+                className="input-glass pl-10"
+              />
+            </div>
           </div>
+
+          {/* Email */}
           <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Tax Rate (%)</label>
-            <input type="number" defaultValue="18" className="input-glass" />
+            <label className="text-sm font-medium text-muted-foreground">
+              Email
+            </label>
+            <div className="relative">
+              <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="you@company.com"
+                className="input-glass pl-10"
+              />
+            </div>
           </div>
-        </div>
+
+          {/* Password */}
+          <div className="space-y-2">
+            <label className="text-sm font-medium text-muted-foreground">
+              Password
+            </label>
+            <div className="relative">
+              <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+              <input
+                type={showPassword ? "text" : "password"}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="••••••••"
+                className="input-glass pl-10 pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3.5 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-foreground"
+              >
+                {showPassword ? (
+                  <EyeOff className="w-4 h-4" />
+                ) : (
+                  <Eye className="w-4 h-4" />
+                )}
+              </button>
+            </div>
+          </div>
+
+          {/* Submit */}
+          <button type="submit" className="gradient-btn w-full">
+            Create Account
+          </button>
+        </form>
+
+        {/* Footer */}
+        <p className="text-center mt-6 text-sm text-muted-foreground">
+          Already have an account?{" "}
+          <Link
+            to="/login"
+            className="text-primary hover:underline font-medium"
+          >
+            Sign In
+          </Link>
+        </p>
       </div>
     </div>
+  );
+};
 
-    {/* User Settings */}
-    <div className="glass-card p-6 space-y-5 animate-fade-up" style={{ opacity: 0, animationDelay: "0.2s" }}>
-      <div className="flex items-center gap-3 mb-2">
-        <User className="w-5 h-5 text-teal" />
-        <h2 className="font-semibold">User Settings</h2>
-      </div>
-      <div className="space-y-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Full Name</label>
-            <input defaultValue="Jane Doe" className="input-glass" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Email</label>
-            <input defaultValue="jane@acme.co" className="input-glass" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    {/* Password */}
-    <div className="glass-card p-6 space-y-5 animate-fade-up" style={{ opacity: 0, animationDelay: "0.3s" }}>
-      <div className="flex items-center gap-3 mb-2">
-        <Lock className="w-5 h-5 text-pink-400" />
-        <h2 className="font-semibold">Change Password</h2>
-      </div>
-      <div className="space-y-4">
-        <div className="space-y-2">
-          <label className="text-sm font-medium text-muted-foreground">Current Password</label>
-          <input type="password" placeholder="••••••••" className="input-glass" />
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">New Password</label>
-            <input type="password" placeholder="••••••••" className="input-glass" />
-          </div>
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-muted-foreground">Confirm Password</label>
-            <input type="password" placeholder="••••••••" className="input-glass" />
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div className="flex justify-end">
-      <button className="gradient-btn text-sm">Save Changes</button>
-    </div>
-  </div>
-);
-
-export default SettingsPage;
+export default Signup;
